@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  db:
+    image: bitnami/postgresql:latest
+    container_name: bitnami-postgres-db
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=secret123
+      - POSTGRESQL_DATABASE=mydatabase
+    ports:
+      - "5432:5432"  
+    volumes:
+      - db-data:/bitnami/postgresql
+    networks:
+      - mynetwork
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+
+volumes:
+  db-data:
+
+networks:
+  mynetwork:
