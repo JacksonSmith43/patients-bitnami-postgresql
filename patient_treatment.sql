@@ -132,9 +132,7 @@ CREATE TABLE public.patients (
     patient_id integer NOT NULL,
     first_name character varying(30),
     last_name character varying(30),
-    birthdate date,
-    place_id integer,
-    doctor_id integer
+    birthdate date
 );
 
 
@@ -168,10 +166,9 @@ ALTER SEQUENCE public.patient_patient_id_seq OWNED BY public.patients.patient_id
 
 CREATE TABLE public.treatments (
     treatment_id integer NOT NULL,
-    treatment_type character varying(40),
     patient_id integer,
-    doctor_id integer,
     illness_id integer,
+    doctor_id integer,
     hospital_id integer,
     date date
 );
@@ -285,14 +282,14 @@ COPY public.illnesses (illness_id, name) FROM stdin;
 -- Data for Name: patients; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.patients (patient_id, first_name, last_name, birthdate, place_id, doctor_id) FROM stdin;
-1	Jackson	Smith	1998-02-23	\N	\N
-2	Janet	Jackson	1957-03-24	\N	\N
-3	Michael	Yoshi	2023-09-04	\N	\N
-4	Donatello	O´Neil	1988-09-13	\N	\N
-5	Mikey	Patrenko	1997-12-14	\N	\N
-6	Raphael	Fedori	1907-01-02	\N	\N
-7	Birgit	Cadogan	2023-02-22	\N	\N
+COPY public.patients (patient_id, first_name, last_name, birthdate) FROM stdin;
+36	Jackson	Smith	1998-02-23
+37	Janet	Jackson	1957-03-24
+38	Michael	Yoshi	2023-09-04
+39	Donatello	O´Neil	1988-09-13
+40	Mikey	Patrenko	1997-12-14
+41	Raphael	Fedori	1909-01-02
+42	Birgit	Cadogan	2023-02-22
 \.
 
 
@@ -300,15 +297,14 @@ COPY public.patients (patient_id, first_name, last_name, birthdate, place_id, do
 -- Data for Name: treatments; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.treatments (treatment_id, treatment_type, patient_id, doctor_id, illness_id, hospital_id, date) FROM stdin;
-1	Weirdness	\N	\N	\N	\N	2000-01-01
-2	Check up	\N	\N	\N	\N	2000-01-01
-4	Check up	\N	\N	\N	\N	2024-03-04
-8	Check up	\N	\N	\N	\N	2024-07-09
-10	Operation	\N	\N	\N	\N	2015-06-07
-11	Medication	\N	\N	\N	\N	2014-05-06
-14	Operation	\N	\N	\N	\N	2012-04-05
-15	Hospitalisation	\N	\N	\N	\N	2001-02-02
+COPY public.treatments (treatment_id, patient_id, illness_id, doctor_id, hospital_id, date) FROM stdin;
+1	36	1	1	1	2023-06-22
+2	37	2	2	2	2001-01-02
+12	38	3	3	3	2023-12-25
+20	39	4	4	4	1994-04-30
+24	40	5	5	5	2005-08-29
+25	41	6	6	6	1929-07-10
+26	42	7	7	7	2023-06-22
 \.
 
 
@@ -337,14 +333,14 @@ SELECT pg_catalog.setval('public.illnesses_illness_id_seq', 7, true);
 -- Name: patient_patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.patient_patient_id_seq', 7, true);
+SELECT pg_catalog.setval('public.patient_patient_id_seq', 42, true);
 
 
 --
 -- Name: treatments_treatment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.treatments_treatment_id_seq', 15, true);
+SELECT pg_catalog.setval('public.treatments_treatment_id_seq', 26, true);
 
 
 --
