@@ -258,8 +258,7 @@ COPY public.hospitals (hospital_id, name) FROM stdin;
 3	Holby City
 4	St James´s
 5	Ninewells
-6	Ninewells
-7	Kings Cross
+6	Kings Cross
 \.
 
 
@@ -303,8 +302,8 @@ COPY public.treatments (treatment_id, patient_id, illness_id, doctor_id, hospita
 12	38	3	3	3	2023-12-25
 20	39	4	4	4	1994-04-30
 24	40	5	5	5	2005-08-29
-25	41	6	6	6	1929-07-10
-26	42	7	7	7	2023-06-22
+25	41	6	6	5	1929-07-10
+27	42	7	7	6	2023-06-22
 \.
 
 
@@ -340,7 +339,7 @@ SELECT pg_catalog.setval('public.patient_patient_id_seq', 42, true);
 -- Name: treatments_treatment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.treatments_treatment_id_seq', 26, true);
+SELECT pg_catalog.setval('public.treatments_treatment_id_seq', 27, true);
 
 
 --
